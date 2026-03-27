@@ -1,9 +1,5 @@
 import PageLayout from "@/components/PageLayout";
 import francescoImg from "@/assets/people/francesco-casale.jpg";
-import annaImg from "@/assets/people/anna-muller.jpg";
-import lucaImg from "@/assets/people/luca-rossi.jpg";
-import sarahImg from "@/assets/people/sarah-chen.jpg";
-import davidImg from "@/assets/people/david-park.jpg";
 
 const pi = {
   name: "Francesco Paolo Casale",
@@ -12,12 +8,35 @@ const pi = {
   photo: francescoImg,
 };
 
-const members = [
-  { name: "Anna Müller", role: "PhD Student", focus: "Deep generative models for single-cell data", photo: annaImg },
-  { name: "Luca Rossi", role: "PhD Student", focus: "Statistical methods for GWAS", photo: lucaImg },
-  { name: "Sarah Chen", role: "Postdoctoral Researcher", focus: "Multi-omics integration", photo: sarahImg },
-  { name: "David Park", role: "MSc Student", focus: "Variational inference for genetics", photo: davidImg },
+const postdocs = [
+  { name: "Diyuan Lu" },
+  { name: "Abhinav Jain" },
+  { name: "Jamison Burks" },
 ];
+
+const phdStudents = [
+  { name: "Antonio Nappi" },
+  { name: "Ayshan Aliyeva" },
+  { name: "Benedikt Roth" },
+  { name: "Daniel Sens" },
+  { name: "Emanuele Ruoppolo" },
+  { name: "Jan Engelmann" },
+  { name: "Lubiuv Shilova" },
+  { name: "Mairi McClean" },
+  { name: "Martin Meinel" },
+  { name: "Niklas Stotzem" },
+  { name: "Shubham Chaudhary" },
+  { name: "Xiaotong Fu" },
+];
+
+const MemberCard = ({ name }: { name: string }) => (
+  <div className="p-4 rounded-md bg-card border border-border flex items-center gap-3">
+    <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-muted-foreground font-medium text-sm shrink-0">
+      {name.split(" ").map(n => n[0]).join("")}
+    </div>
+    <p className="font-medium text-foreground">{name}</p>
+  </div>
+);
 
 const People = () => (
   <PageLayout>
@@ -40,25 +59,16 @@ const People = () => (
       </div>
 
       <div className="space-y-6">
-        <h2 className="text-lg font-semibold text-foreground">Team</h2>
+        <h2 className="text-lg font-semibold text-foreground">Postdocs</h2>
         <div className="grid sm:grid-cols-2 gap-4">
-          {members.map((m) => (
-            <div key={m.name} className="p-4 rounded-md bg-card border border-border flex gap-4 items-start">
-              <img
-                src={m.photo}
-                alt={m.name}
-                width={80}
-                height={80}
-                loading="lazy"
-                className="rounded-md object-cover w-20 h-20 shrink-0"
-              />
-              <div className="space-y-1">
-                <p className="font-medium text-foreground">{m.name}</p>
-                <p className="text-sm text-accent">{m.role}</p>
-                <p className="text-sm text-muted-foreground">{m.focus}</p>
-              </div>
-            </div>
-          ))}
+          {postdocs.map((m) => <MemberCard key={m.name} name={m.name} />)}
+        </div>
+      </div>
+
+      <div className="space-y-6">
+        <h2 className="text-lg font-semibold text-foreground">PhD Students</h2>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {phdStudents.map((m) => <MemberCard key={m.name} name={m.name} />)}
         </div>
       </div>
     </div>
