@@ -3,19 +3,13 @@ import teamPhoto from "@/assets/team-group.jpg";
 
 const Index = () => (
   <PageLayout>
-    <div className="space-y-8">
-      <h1 className="text-3xl font-bold text-foreground">Casale Lab</h1>
-      <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
-        We develop computational methods at the intersection of{" "}
-        <span className="text-foreground font-medium">artificial intelligence</span>,{" "}
-        <span className="text-foreground font-medium">statistical genetics</span>, and{" "}
-        <span className="text-foreground font-medium">multiscale biology</span>.
-      </p>
-      <p className="text-muted-foreground leading-relaxed max-w-2xl">
-        Our research focuses on building scalable models that integrate diverse
-        biological data — from molecular measurements to population-level
-        phenotypes — to advance our understanding of human health and disease.
-      </p>
+    <div className="flex flex-col items-center gap-8 py-8">
+      <h1
+        className="text-2xl sm:text-3xl font-semibold tracking-tight text-foreground"
+        style={{ fontFamily: "var(--font-heading)" }}
+      >
+        AI&amp;Genetics<span className="text-accent">4</span>Biology
+      </h1>
       <img
         src={teamPhoto}
         alt="Casale Lab team"
@@ -23,11 +17,6 @@ const Index = () => (
         height={504}
         className="rounded-md w-full object-cover"
       />
-      <div className="pt-4 border-t border-border">
-        <p className="text-sm text-muted-foreground">
-          Based at the Department of Computational Biology, University of Lausanne (UNIL).
-        </p>
-      </div>
     </div>
   </PageLayout>
 );
