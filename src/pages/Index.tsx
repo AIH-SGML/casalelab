@@ -1,16 +1,27 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import PageLayout from "@/components/PageLayout";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
-  return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
+const Index = () => (
+  <PageLayout>
+    <div className="space-y-6">
+      <h1 className="text-3xl font-bold text-foreground">Casale Lab</h1>
+      <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
+        We develop computational methods at the intersection of{" "}
+        <span className="text-foreground font-medium">artificial intelligence</span>,{" "}
+        <span className="text-foreground font-medium">statistical genetics</span>, and{" "}
+        <span className="text-foreground font-medium">multiscale biology</span>.
+      </p>
+      <p className="text-muted-foreground leading-relaxed max-w-2xl">
+        Our research focuses on building scalable models that integrate diverse
+        biological data — from molecular measurements to population-level
+        phenotypes — to advance our understanding of human health and disease.
+      </p>
+      <div className="pt-4 border-t border-border">
+        <p className="text-sm text-muted-foreground">
+          Based at the Department of Computational Biology, University of Lausanne (UNIL).
+        </p>
+      </div>
     </div>
-  );
-};
-
-const Index = PlaceholderIndex;
+  </PageLayout>
+);
 
 export default Index;
