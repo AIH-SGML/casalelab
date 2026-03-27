@@ -1,8 +1,9 @@
 import PageLayout from "@/components/PageLayout";
+import teamPhoto from "@/assets/team-group.jpg";
 
 const Index = () => (
   <PageLayout>
-    <div className="space-y-6">
+    <div className="space-y-8">
       <h1 className="text-3xl font-bold text-foreground">Casale Lab</h1>
       <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
         We develop computational methods at the intersection of{" "}
@@ -15,6 +16,13 @@ const Index = () => (
         biological data — from molecular measurements to population-level
         phenotypes — to advance our understanding of human health and disease.
       </p>
+      <img
+        src={teamPhoto}
+        alt="Casale Lab team"
+        width={896}
+        height={504}
+        className="rounded-md w-full object-cover"
+      />
       <div className="pt-4 border-t border-border">
         <p className="text-sm text-muted-foreground">
           Based at the Department of Computational Biology, University of Lausanne (UNIL).
