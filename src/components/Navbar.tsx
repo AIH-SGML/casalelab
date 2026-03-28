@@ -18,8 +18,13 @@ const Navbar = () => {
   return (
     <nav className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 sticky top-0 z-50">
       <div className="max-w-4xl mx-auto px-6 flex items-center justify-between h-14">
-        <Link to="/" className="font-heading text-lg font-semibold text-foreground" style={{ fontFamily: "var(--font-heading)" }}>
-          Casale Lab
+        <Link
+          to="/"
+          className="font-heading text-lg font-semibold text-foreground flex items-center gap-2"
+          style={{ fontFamily: "var(--font-heading)" }}
+        >
+          <img src="/icon.png" alt="Casale Lab icon" className="w-7 h-7 object-contain shrink-0" />
+          <span>Casale Lab</span>
         </Link>
         <div className="hidden md:flex gap-6">
           {links.map((l) => (
