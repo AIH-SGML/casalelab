@@ -28,6 +28,14 @@ const labPublicationsByYear: { year: string; items: Publication[] }[] = [
     items: [
       {
         title:
+          "HistoGWAS: An AI-enabled framework for automated genetic analysis of tissue phenotypes in histology cohorts",
+        authors:
+          "S. Chaudhary, A. Voigts, M. Bereket, M.L. Albert, K. Schwamborn, E. Zeggini, F.P. Casale",
+        venue: "Genome Biology, 2026",
+        link: "https://link.springer.com/article/10.1186/s13059-026-04031-z",
+      },
+      {
+        title:
           "GEMCONT: Genetics-based Multimodal Contrastive Learning for Disease-Focused Imaging Genetics",
         authors: "D. Sens, L. Shilova, A.V. Dalca, J. Schnabel†, F.P. Casale†",
         venue: "Medical Imaging with Deep Learning (MIDL), 2026",
@@ -72,14 +80,6 @@ const labPublicationsByYear: { year: string; items: Publication[] }[] = [
           "D. Sens, L. Shilova, L. Graf, M. Grebenshchikova, B.M. Eskofier, F.P. Casale",
         venue: "Genome Research, 2024",
         link: "https://genome.cshlp.org/content/34/9/1276.long",
-      },
-      {
-        title:
-          "HistoGWAS: An AI-enabled framework for automated genetic analysis of tissue phenotypes in histology cohorts",
-        authors:
-          "S. Chaudhary, A. Voigts, M. Bereket, M.L. Albert, K. Schwamborn, E. Zeggini, F.P. Casale",
-        venue: "bioRxiv, 2024",
-        link: "https://www.biorxiv.org/content/10.1101/2024.06.09.597752v3.full",
       },
       {
         title: "Mixed models with multiple instance learning",
