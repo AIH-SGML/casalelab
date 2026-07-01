@@ -1,4 +1,12 @@
+import { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
+import teamImg1 from "@/assets/team/team-group-1.jpg";
+import teamImg2 from "@/assets/team/team-group-2.png";
+import teamImg3 from "@/assets/team/team-group-3.png";
+import teamImg4 from "@/assets/team/team-group-4.png";
+import teamImg5 from "@/assets/team/team-group-5.jpg";
+import teamImg6 from "@/assets/team/team-group-6.png";
 import abhinavImg from "@/assets/people/abhinav_jain.png";
 import antonioImg from "@/assets/people/antonio_nappi.png";
 import ayshanImg from "@/assets/people/ayshan_alyneva.png";
@@ -16,25 +24,83 @@ import paoloImg from "@/assets/people/paolo_casale.png";
 import shubhamImg from "@/assets/people/shubham_chaudhary.png";
 import xiaotongImg from "@/assets/people/xiaotong_fu.png";
 
+// ─── Carousel ─────────────────────────────────────────────────────────────────
+
+const groupImages = [teamImg1, teamImg2, teamImg3, teamImg4, teamImg5, teamImg6];
+
+const GroupCarousel = () => {
+  const [index, setIndex] = useState(0);
+  const prev = () => setIndex((i) => (i - 1 + groupImages.length) % groupImages.length);
+  const next = () => setIndex((i) => (i + 1) % groupImages.length);
+
+  return (
+    <div className="space-y-3">
+      <div className="relative flex items-center gap-3">
+        <button
+          onClick={prev}
+          aria-label="Previous image"
+          className="shrink-0 p-1 text-foreground/40 hover:text-foreground transition-colors"
+        >
+          <ChevronLeft size={22} />
+        </button>
+
+        {/* Fixed-size box — image centers inside, never upscaled, shrinks only when needed */}
+        <div className="flex-1 h-80 bg-muted rounded-sm flex items-center justify-center overflow-hidden">
+          <img
+            key={index}
+            src={groupImages[index]}
+            alt={`Research group photo ${index + 1}`}
+            className="max-w-full max-h-full w-auto h-auto"
+          />
+        </div>
+
+        <button
+          onClick={next}
+          aria-label="Next image"
+          className="shrink-0 p-1 text-foreground/40 hover:text-foreground transition-colors"
+        >
+          <ChevronRight size={22} />
+        </button>
+      </div>
+
+      {/* Dot indicators */}
+      <div className="flex justify-center gap-1.5">
+        {groupImages.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setIndex(i)}
+            aria-label={`Go to image ${i + 1}`}
+            className={`w-1.5 h-1.5 rounded-full transition-colors ${
+              i === index ? "bg-foreground" : "bg-foreground/20"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// ─── Data ─────────────────────────────────────────────────────────────────────
+
 const pi = {
   name: "Francesco Paolo Casale",
   role: "Principal Investigator",
-  bio: "Leads the Casale Lab, developing AI and statistical methods for causal discovery in human disease. He trained in human genetics at the University of Cambridge and EMBL-EBI, advanced AI for biology at Microsoft Research in Boston, and led Statistical Genetics at Insitro in the San Francisco Bay Area, applying AI to drug discovery. Since 2022, he has been a Principal Investigator at Helmholtz Munich, where he builds and directs a research program focused on interpretable multi-scale models linking genetic variation to disease mechanisms.",
+  bio: "After training in Physics at the University of Naples Federico II, Paolo completed a PhD in human genetics and statistical modeling at the University of Cambridge and EMBL-EBI, followed by postdoctoral work in AI for biology at Microsoft Research in Boston. He then led an interdisciplinary team at insitro in the San Francisco Bay Area, applying machine learning and human genetics to target discovery. Since 2022, he has been a Principal Investigator at Helmholtz Munich, where he leads a research program focused on modelling human disease across scales, integrating AI, genetics, and multimodal data to uncover the mechanisms linking genetic variation to health outcomes.",
   photo: paoloImg,
 };
 
 const postdocs = [
   {
-    name: "Diyuan Lu",
-    role: "Postdoctoral Researcher",
-    description: "Develops machine learning methods across clinical, imaging, and molecular data to predict disease, stratify subtypes, and map underlying mechanisms.",
-    photo: diyuanImg,
-  },
-  {
     name: "Abhinav Jain",
     role: "Postdoctoral Researcher",
     description: "Builds AI methods to model how rare and common genetic variants perturb biological pathways and function to drive disease.",
     photo: abhinavImg,
+  },
+  {
+    name: "Diyuan Lu",
+    role: "Postdoctoral Researcher",
+    description: "Develops machine learning methods across clinical, imaging, and molecular data to predict disease, stratify subtypes, and map underlying mechanisms.",
+    photo: diyuanImg,
   },
   {
     name: "Jamison Burks",
@@ -129,63 +195,80 @@ const phdStudents = [
   },
 ];
 
-const members = [...postdocs, ...phdStudents].sort((a, b) => a.name.localeCompare(b.name));
+// ─── Components ───────────────────────────────────────────────────────────────
 
-type Member = {
-  name: string;
-  role: string;
-  description: string;
-  photo: string;
-  coSupervisor?: string;
-};
+type Member = { name: string; role: string; description: string; photo: string; coSupervisor?: string };
 
 const MemberCard = ({ name, role, description, photo, coSupervisor }: Member) => (
-  <div className="p-5 rounded-md bg-card border border-border flex items-start gap-5 min-h-48">
+  <div className="flex items-start gap-5 bg-muted/50 rounded-sm p-4">
     <img
       src={photo}
       alt={name}
-      width={132}
-      height={132}
-      className="w-32 h-32 rounded-md object-cover shrink-0"
+      className="w-20 h-20 rounded-sm object-cover shrink-0"
     />
-    <div className="space-y-1 flex-1 min-w-0">
-      <p className="font-medium text-foreground">{name}</p>
-      <div className="space-y-0">
-        <p className="text-sm text-accent font-medium">{role}</p>
-        {coSupervisor ? (
-          <p className="text-[11px] font-normal text-accent/80">co-sup. {coSupervisor}</p>
-        ) : null}
-      </div>
-      <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+    <div className="space-y-0.5 min-w-0">
+      <p className="font-medium text-foreground text-sm">{name}</p>
+      <p className="text-xs text-foreground/60">{role}{coSupervisor && ` (co-sup. ${coSupervisor})`}</p>
+      <p className="text-sm text-foreground leading-relaxed pt-1">{description}</p>
     </div>
   </div>
 );
 
+// ─── Page ─────────────────────────────────────────────────────────────────────
+
 const People = () => (
   <PageLayout>
-    <div className="space-y-10">
-      <h1 className="text-3xl font-bold text-foreground">People</h1>
+    <div className="space-y-16">
 
-      <div className="flex gap-6 items-start flex-col sm:flex-row">
-        <img
-          src={pi.photo}
-          alt={pi.name}
-          width={160}
-          height={160}
-          className="rounded-md object-cover w-40 h-40 shrink-0"
-        />
-        <div className="space-y-2">
-          <h2 className="text-xl font-semibold text-foreground">{pi.name}</h2>
-          <p className="text-sm text-accent font-medium">{pi.role}</p>
-          <p className="text-muted-foreground leading-relaxed max-w-2xl">{pi.bio}</p>
-        </div>
-      </div>
+      <h1 className="text-4xl font-bold text-foreground" style={{ fontFamily: "var(--font-heading)" }}>
+        Team
+      </h1>
 
-      <div className="space-y-6">
-        <div className="grid xl:grid-cols-2 gap-5">
-          {members.map((m) => <MemberCard key={m.name} {...m} />)}
+      {/* PI */}
+      <section className="space-y-6">
+        <h2 className="text-xl font-semibold text-foreground" style={{ fontFamily: "var(--font-heading)" }}>
+          Principal Investigator
+        </h2>
+        <div className="flex gap-6 items-start flex-col sm:flex-row">
+          <img
+            src={pi.photo}
+            alt={pi.name}
+            className="rounded-sm object-cover w-36 h-36 shrink-0"
+          />
+          <div className="space-y-1.5">
+            <p className="font-semibold text-foreground">{pi.name}</p>
+            <p className="text-sm text-foreground leading-relaxed pt-1 max-w-2xl">{pi.bio}</p>
+          </div>
         </div>
-      </div>
+      </section>
+
+      <hr className="border-t border-border" />
+
+      {/* Lab pictures carousel */}
+      <section className="space-y-6">
+        <h2 className="text-xl font-semibold text-foreground" style={{ fontFamily: "var(--font-heading)" }}>
+          Lab Pictures
+        </h2>
+        <GroupCarousel />
+      </section>
+
+      <hr className="border-t border-border" />
+
+      {/* Team members — postdocs + PhD students, sorted by last name */}
+      <section className="space-y-8">
+        <h2 className="text-xl font-semibold text-foreground" style={{ fontFamily: "var(--font-heading)" }}>
+          Team Members
+        </h2>
+        <div className="grid sm:grid-cols-2 gap-8">
+          {[...postdocs, ...phdStudents]
+            .sort((a, b) => {
+              const lastName = (name: string) => name.split(" ").slice(-1)[0];
+              return lastName(a.name).localeCompare(lastName(b.name));
+            })
+            .map((m) => <MemberCard key={m.name} {...m} />)}
+        </div>
+      </section>
+
     </div>
   </PageLayout>
 );

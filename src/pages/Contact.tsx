@@ -9,16 +9,16 @@ const Contact = () => (
           <span className="text-foreground font-medium">Francesco Paolo Casale</span>
         </p>
         <p>
-          Department of Computational Biology
+          Computational Health Center and Helmholtz Pioneer Campus
           <br />
-          University of Lausanne (UNIL)
+          Helmholtz Munich
           <br />
-          Lausanne, Switzerland
+          Ingolstädter Landstraße 1, 85764 Neuherberg, Germany
         </p>
         <p>
           Email:{" "}
-          <a href="mailto:francesco.casale@unil.ch" className="text-accent hover:underline">
-            francesco.casale@unil.ch
+          <a href="mailto:francescopaolo.casale@helmholtz-munich.de" className="text-accent hover:underline">
+            francescopaolo.casale@helmholtz-munich.de
           </a>
         </p>
       </div>

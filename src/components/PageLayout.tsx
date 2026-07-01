@@ -13,8 +13,9 @@ const PageLayout = ({
     <main className={cn("flex-1 max-w-4xl mx-auto w-full px-6 py-12", mainClassName)}>
       {children}
     </main>
-    <footer className="border-t border-white/10 bg-[#071019] py-6 text-center text-sm text-slate-400">
-      © {new Date().getFullYear()} Casale Lab. All rights reserved.
+    <footer className="border-t border-border bg-background py-8 text-center text-xs text-muted-foreground tracking-wide">
+      © {new Date().getFullYear()} Casale Lab · {" "}
+      <a href="https://www.linkedin.com/in/francesco-paolo-casale-822140275/" target="_blank" rel="noreferrer" className="hover:text-foreground transition-colors">Follow on LinkedIn</a>
     </footer>
   </div>
 );
