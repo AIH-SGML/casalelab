@@ -1,3 +1,16 @@
-# Welcome to your Lovable project
+# Casale Lab Website
 
-TODO: Document your project here
+Website for the Casale Lab.
+
+## Development
+
+```bash
+npm install
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+```
