@@ -25,7 +25,7 @@ const Navbar = () => {
           className="text-base font-semibold text-foreground flex items-center gap-2"
           style={{ fontFamily: "var(--font-heading)" }}
         >
-          <img src="/new_icon.png" alt="Casale Lab icon" className="w-9 h-9 object-contain shrink-0" />
+          <img src={`${import.meta.env.BASE_URL}new_icon.png`} alt="Casale Lab icon" className="w-9 h-9 object-contain shrink-0" />
           <span>Casale Lab</span>
         </Link>
         <div className="hidden md:flex gap-7">
