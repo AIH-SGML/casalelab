@@ -181,17 +181,20 @@ const phdStudents = [
     photo: niklasImg,
   },
   {
-    name: "Shubham Chaudhary",
-    role: "PhD Student",
-    description: "Links genetic variation to tissue morphology through AI-driven genome-wide association studies of histology-derived phenotypes.",
-    photo: shubhamImg,
-  },
-  {
     name: "Xiaotong Fu",
     role: "PhD Student",
     coSupervisor: "Fabian Theis, HGMU",
     description: "Integrates retinal imaging and genetic data with machine learning to discover biomarkers and model disease progression in eye diseases.",
     photo: xiaotongImg,
+  },
+];
+
+const alumni = [
+  {
+    name: "Shubham Chaudhary",
+    role: "PhD Student (2022–2026)",
+    description: "Developed AI methods linking genetic variation to tissue morphology through histology-derived phenotypes. Currently a Postdoctoral Researcher in the Luecken Lab (LMU).",
+    photo: shubhamImg,
   },
 ];
 
@@ -261,6 +264,23 @@ const People = () => (
         </h2>
         <div className="grid sm:grid-cols-2 gap-8">
           {[...postdocs, ...phdStudents]
+            .sort((a, b) => {
+              const lastName = (name: string) => name.split(" ").slice(-1)[0];
+              return lastName(a.name).localeCompare(lastName(b.name));
+            })
+            .map((m) => <MemberCard key={m.name} {...m} />)}
+        </div>
+      </section>
+
+      <hr className="border-t border-border" />
+
+      {/* Alumni */}
+      <section className="space-y-8">
+        <h2 className="text-xl font-semibold text-foreground" style={{ fontFamily: "var(--font-heading)" }}>
+          Alumni
+        </h2>
+        <div className="grid sm:grid-cols-2 gap-8">
+          {alumni
             .sort((a, b) => {
               const lastName = (name: string) => name.split(" ").slice(-1)[0];
               return lastName(a.name).localeCompare(lastName(b.name));
