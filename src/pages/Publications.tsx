@@ -205,7 +205,7 @@ const Publications = () => (
           .
         </p>
         <h2 className="text-2xl font-semibold text-foreground">
-          Selected Publications from the Lab
+          Selected Publications from the Casale Lab
         </h2>
 
         <div className="space-y-8">
@@ -228,7 +228,7 @@ const Publications = () => (
 
       <div className="space-y-6 pt-8">
         <h2 className="text-2xl font-semibold text-foreground">
-          Selected Publications by the PI
+          Selected Publications from Earlier Research
         </h2>
         <ul className="space-y-4">
           {piPublications.map((publication) => (
