@@ -12,28 +12,37 @@ const IMG = `${import.meta.env.BASE_URL}home_img_light_cropped.png`;
 // Positions are fractions of the rendered image (aspect-preserved, so they
 // map identically to the source artwork). `cx`/`cy` = scale centre,
 // `sd` = scale diameter as a fraction of image width.
-// `emit`/`frame` (default true) toggle the particles and the ring around the loupe.
+// A "loupe" scale magnifies a compact feature; a "glow" scale (the DNA helix)
+// instead brightens a whole region of the artwork in place.
 type Scale = {
   id: string;
   label: string;
   cx: number;
   cy: number;
   sd: number;
-  zoom?: number;
-  emit?: boolean;
-  frame?: boolean;
 };
 
+// Compact features magnified by the loupe, cell → population.
 const SCALES: Scale[] = [
   { id: "cell", label: "Cell", cx: 0.162, cy: 0.52, sd: 0.11 },
   { id: "tissue", label: "Tissue", cx: 0.392, cy: 0.43, sd: 0.17 },
   { id: "organ", label: "Organ", cx: 0.614, cy: 0.387, sd: 0.17 },
   { id: "population", label: "Population", cx: 0.833, cy: 0.36, sd: 0.19 },
-  // DNA helix: enlarges and brightens only — no particles, no ring.
-  { id: "genetics", label: "Genetics", cx: 0.74, cy: 0.7, sd: 0.24, zoom: 1.4, emit: false, frame: false },
 ];
 
-const ZOOM = 1.5; // default magnification inside the loupe
+// The DNA helix sweeping across the lower-right. `box` is the (fractional)
+// hover hit-area; `mask` reveals just the helix on the brightened overlay;
+// `lx`/`ly` place the label.
+const GENE = {
+  id: "genetics",
+  label: "Genetics",
+  box: { x: 0.42, y: 0.52, w: 0.58, h: 0.46 },
+  mask: "radial-gradient(46% 33% at 66% 78%, #000 60%, transparent 100%)",
+  lx: 0.7,
+  ly: 0.93,
+};
+
+const ZOOM = 1.5; // magnification inside the loupe
 
 const HeroImage = () => {
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -42,6 +51,7 @@ const HeroImage = () => {
   const [size, setSize] = useState({ w: 0, h: 0 });
   const activeRef = useRef<Scale | null>(null);
   const [active, setActive] = useState<Scale | null>(null);
+  const [geneActive, setGeneActive] = useState(false);
 
   const focus = (s: Scale | null) => {
     activeRef.current = s;
@@ -112,7 +122,7 @@ const HeroImage = () => {
     const draw = () => {
       ctx.clearRect(0, 0, size.w, size.h);
       const s = activeRef.current;
-      if (s && s.emit !== false) spawn(s);
+      if (s) spawn(s);
 
       for (const p of particles) {
         p.x += p.vx;
@@ -147,21 +157,20 @@ const HeroImage = () => {
         ctx.fill();
       }
 
-      // Keep animating while an emitting scale is active or particles remain.
-      const emitting = activeRef.current && activeRef.current.emit !== false;
-      if (emitting || particles.length) {
+      // Keep animating while a scale is active or particles remain.
+      if (activeRef.current || particles.length) {
         frame = requestAnimationFrame(draw);
       } else {
         frame = 0;
       }
     };
 
-    // Restart the loop whenever an emitting scale becomes active.
+    // Restart the loop whenever a scale becomes active.
     const kick = () => {
       if (!frame) frame = requestAnimationFrame(draw);
     };
     const interval = window.setInterval(() => {
-      if (activeRef.current && activeRef.current.emit !== false) kick();
+      if (activeRef.current) kick();
     }, 200);
 
     return () => {
@@ -190,13 +199,52 @@ const HeroImage = () => {
         className="pointer-events-none absolute inset-0 z-20 h-full w-full"
       />
 
-      {/* Hotspots. */}
+      {/* DNA "glow": a brightened, more-saturated copy of the artwork revealed
+          only over the helix region while the hotspot is hovered. */}
+      <img
+        aria-hidden
+        src={IMG}
+        draggable={false}
+        className="pointer-events-none absolute inset-0 z-10 h-auto w-full transition-opacity duration-500 ease-out"
+        style={{
+          WebkitMaskImage: GENE.mask,
+          maskImage: GENE.mask,
+          WebkitMaskRepeat: "no-repeat",
+          maskRepeat: "no-repeat",
+          filter: "saturate(2) contrast(1.06)",
+          opacity: geneActive ? 1 : 0,
+        }}
+      />
+      <button
+        type="button"
+        aria-label={`Highlight ${GENE.label}`}
+        onMouseEnter={() => setGeneActive(true)}
+        onMouseLeave={() => setGeneActive(false)}
+        onFocus={() => setGeneActive(true)}
+        onBlur={() => setGeneActive(false)}
+        className="absolute z-30 focus:outline-none"
+        style={{
+          left: `${GENE.box.x * 100}%`,
+          top: `${GENE.box.y * 100}%`,
+          width: `${GENE.box.w * 100}%`,
+          height: `${GENE.box.h * 100}%`,
+        }}
+      />
+      <span
+        aria-hidden
+        className={`pointer-events-none absolute z-30 -translate-x-1/2 whitespace-nowrap text-[10px] font-medium uppercase tracking-[0.14em] text-primary transition-opacity duration-300 ${
+          geneActive ? "opacity-100" : "opacity-0"
+        }`}
+        style={{ left: `${GENE.lx * 100}%`, top: `${GENE.ly * 100}%` }}
+      >
+        {GENE.label}
+      </span>
+
+      {/* Loupe hotspots. */}
       {size.w > 0 &&
         SCALES.map((s) => {
-          const z = s.zoom ?? ZOOM;
-          const d = z * s.sd * size.w; // loupe diameter
+          const d = ZOOM * s.sd * size.w; // loupe diameter
           const ring = s.sd * size.w; // rest-ring diameter (circles the scale)
-          const framed = s.frame !== false;
           const isActive = active?.id === s.id;
           return (
             <button
@@ -210,28 +258,24 @@ const HeroImage = () => {
               className="absolute z-30 -translate-x-1/2 -translate-y-1/2 rounded-full focus:outline-none"
               style={{ left: `${s.cx * 100}%`, top: `${s.cy * 100}%`, width: d, height: d }}
             >
-              {/* Rest hint ring — appears when hovering the artwork (framed scales only). */}
-              {framed && (
-                <span
-                  aria-hidden
-                  className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/30 transition-opacity duration-300 ${
-                    isActive ? "opacity-0" : "opacity-0 group-hover:opacity-100"
-                  }`}
-                  style={{ width: ring, height: ring }}
-                />
-              )}
+              {/* Rest hint ring — appears when hovering the artwork. */}
+              <span
+                aria-hidden
+                className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/30 transition-opacity duration-300 ${
+                  isActive ? "opacity-0" : "opacity-0 group-hover:opacity-100"
+                }`}
+                style={{ width: ring, height: ring }}
+              />
 
               {/* Magnifier loupe. */}
               <span
                 aria-hidden
-                className={`absolute inset-0 rounded-full transition-all duration-500 ease-out ${
-                  framed ? "shadow-lg shadow-primary/10 ring-1 ring-primary/25" : ""
-                }`}
+                className="absolute inset-0 rounded-full shadow-lg shadow-primary/10 ring-1 ring-primary/25 transition-all duration-500 ease-out"
                 style={{
                   backgroundImage: `url(${IMG})`,
-                  backgroundSize: `${size.w * z}px ${size.h * z}px`,
-                  backgroundPosition: `${d / 2 - s.cx * size.w * z}px ${d / 2 - s.cy * size.h * z}px`,
-                  backgroundColor: framed ? "hsl(var(--background))" : "transparent",
+                  backgroundSize: `${size.w * ZOOM}px ${size.h * ZOOM}px`,
+                  backgroundPosition: `${d / 2 - s.cx * size.w * ZOOM}px ${d / 2 - s.cy * size.h * ZOOM}px`,
+                  backgroundColor: "hsl(var(--background))",
                   opacity: isActive ? 1 : 0,
                   transform: isActive ? "scale(1)" : "scale(0.6)",
                 }}
