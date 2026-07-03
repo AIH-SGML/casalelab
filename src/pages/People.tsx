@@ -23,6 +23,7 @@ import niklasImg from "@/assets/people/niklas_stotzem.png";
 import paoloImg from "@/assets/people/paolo_casale.png";
 import shubhamImg from "@/assets/people/shubham_chaudhary.png";
 import xiaotongImg from "@/assets/people/xiaotong_fu.png";
+import zhengyuanImg from "@/assets/people/zhengyuan_xue.png";
 
 // ─── Carousel ─────────────────────────────────────────────────────────────────
 
@@ -186,6 +187,13 @@ const phdStudents = [
     coSupervisor: "Fabian Theis, HGMU",
     description: "Integrates retinal imaging and genetic data with machine learning to discover biomarkers and model disease progression in eye diseases.",
     photo: xiaotongImg,
+  },
+  {
+    name: "Zhengyuan Xue",
+    role: "PhD Student",
+    coSupervisor: "Daniel Kotlarz, LMU",
+    description: "Develops AI methods for variant effect prediction, and integrates multi-omics and statistical genetics to study the genetic mechanisms of pediatric IBD.",
+    photo: zhengyuanImg,
   },
 ];
 
