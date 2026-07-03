@@ -33,10 +33,10 @@ const Navbar = () => {
             <Link
               key={l.to}
               to={l.to}
-              className={`text-sm tracking-wide transition-colors ${
+              className={`relative text-sm tracking-wide transition-colors after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-left after:bg-primary after:transition-transform after:duration-300 hover:after:scale-x-100 ${
                 pathname === l.to
-                  ? "text-primary font-medium"
-                  : "text-muted-foreground hover:text-foreground"
+                  ? "text-primary font-medium after:scale-x-100"
+                  : "text-muted-foreground hover:text-foreground after:scale-x-0"
               }`}
             >
               {l.label}

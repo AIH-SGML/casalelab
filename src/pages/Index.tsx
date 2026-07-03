@@ -1,7 +1,8 @@
 import PageLayout from "@/components/PageLayout";
+import HeroImage from "@/components/HeroImage";
 
 const Index = () => (
-  <PageLayout mainClassName="py-12 sm:py-16 lg:py-24">
+  <PageLayout mainClassName="py-12 sm:py-16 lg:py-24" background>
     <div className="grid sm:grid-cols-[3fr_2fr] gap-8 sm:gap-12 lg:gap-16 items-center">
 
       <div className="space-y-6">
@@ -16,14 +17,7 @@ const Index = () => (
         </p>
       </div>
 
-      <div className="relative">
-        <div className="absolute inset-y-0 left-0 w-16 sm:w-20 lg:w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-        <img
-          src={`${import.meta.env.BASE_URL}home_img_light_cropped.png`}
-          alt="Cell and DNA illustration"
-          className="w-full h-auto object-contain opacity-80"
-        />
-      </div>
+      <HeroImage />
 
     </div>
   </PageLayout>

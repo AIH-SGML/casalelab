@@ -44,7 +44,7 @@ const Software = () => (
 
       <div className="space-y-5">
         {tools.map((tool) => (
-          <div key={tool.name} className="p-5 rounded-md bg-card border border-border space-y-2">
+          <div key={tool.name} className="p-5 rounded-md bg-card border border-border space-y-2 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md">
             <h2 className="text-lg font-semibold text-foreground">{tool.name}</h2>
             <p className="text-sm text-muted-foreground leading-relaxed">
               {tool.description}

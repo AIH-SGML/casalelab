@@ -203,11 +203,11 @@ const alumni = [
 type Member = { name: string; role: string; description: string; photo: string; coSupervisor?: string };
 
 const MemberCard = ({ name, role, description, photo, coSupervisor }: Member) => (
-  <div className="flex items-start gap-5 bg-muted/50 rounded-sm p-4">
+  <div className="group flex items-start gap-5 bg-muted/50 rounded-sm p-4 border border-transparent transition-all duration-300 hover:-translate-y-0.5 hover:border-border hover:bg-muted hover:shadow-md">
     <img
       src={photo}
       alt={name}
-      className="w-20 h-20 rounded-sm object-cover shrink-0"
+      className="w-20 h-20 rounded-sm object-cover shrink-0 transition-transform duration-300 group-hover:scale-[1.03]"
     />
     <div className="space-y-0.5 min-w-0">
       <p className="font-medium text-foreground text-sm">{name}</p>
