@@ -12,16 +12,28 @@ const IMG = `${import.meta.env.BASE_URL}home_img_light_cropped.png`;
 // Positions are fractions of the rendered image (aspect-preserved, so they
 // map identically to the source artwork). `cx`/`cy` = scale centre,
 // `sd` = scale diameter as a fraction of image width.
-type Scale = { id: string; label: string; cx: number; cy: number; sd: number };
+// `emit`/`frame` (default true) toggle the particles and the ring around the loupe.
+type Scale = {
+  id: string;
+  label: string;
+  cx: number;
+  cy: number;
+  sd: number;
+  zoom?: number;
+  emit?: boolean;
+  frame?: boolean;
+};
 
 const SCALES: Scale[] = [
   { id: "cell", label: "Cell", cx: 0.162, cy: 0.52, sd: 0.11 },
   { id: "tissue", label: "Tissue", cx: 0.392, cy: 0.43, sd: 0.17 },
   { id: "organ", label: "Organ", cx: 0.614, cy: 0.387, sd: 0.17 },
   { id: "population", label: "Population", cx: 0.833, cy: 0.36, sd: 0.19 },
+  // DNA helix: enlarges and brightens only — no particles, no ring.
+  { id: "genetics", label: "Genetics", cx: 0.74, cy: 0.7, sd: 0.24, zoom: 1.4, emit: false, frame: false },
 ];
 
-const ZOOM = 1.5; // magnification inside the loupe
+const ZOOM = 1.5; // default magnification inside the loupe
 
 const HeroImage = () => {
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -100,7 +112,7 @@ const HeroImage = () => {
     const draw = () => {
       ctx.clearRect(0, 0, size.w, size.h);
       const s = activeRef.current;
-      if (s) spawn(s);
+      if (s && s.emit !== false) spawn(s);
 
       for (const p of particles) {
         p.x += p.vx;
@@ -135,20 +147,21 @@ const HeroImage = () => {
         ctx.fill();
       }
 
-      // Keep animating while active or while particles remain.
-      if (activeRef.current || particles.length) {
+      // Keep animating while an emitting scale is active or particles remain.
+      const emitting = activeRef.current && activeRef.current.emit !== false;
+      if (emitting || particles.length) {
         frame = requestAnimationFrame(draw);
       } else {
         frame = 0;
       }
     };
 
-    // Restart the loop whenever a scale becomes active.
+    // Restart the loop whenever an emitting scale becomes active.
     const kick = () => {
       if (!frame) frame = requestAnimationFrame(draw);
     };
     const interval = window.setInterval(() => {
-      if (activeRef.current) kick();
+      if (activeRef.current && activeRef.current.emit !== false) kick();
     }, 200);
 
     return () => {
@@ -180,14 +193,16 @@ const HeroImage = () => {
       {/* Hotspots. */}
       {size.w > 0 &&
         SCALES.map((s) => {
-          const d = ZOOM * s.sd * size.w; // loupe diameter
+          const z = s.zoom ?? ZOOM;
+          const d = z * s.sd * size.w; // loupe diameter
           const ring = s.sd * size.w; // rest-ring diameter (circles the scale)
+          const framed = s.frame !== false;
           const isActive = active?.id === s.id;
           return (
             <button
               key={s.id}
               type="button"
-              aria-label={`Enlarge ${s.label} scale`}
+              aria-label={`Enlarge ${s.label}`}
               onMouseEnter={() => focus(s)}
               onMouseLeave={() => focus(null)}
               onFocus={() => focus(s)}
@@ -195,24 +210,28 @@ const HeroImage = () => {
               className="absolute z-30 -translate-x-1/2 -translate-y-1/2 rounded-full focus:outline-none"
               style={{ left: `${s.cx * 100}%`, top: `${s.cy * 100}%`, width: d, height: d }}
             >
-              {/* Rest hint ring — appears when hovering the artwork. */}
-              <span
-                aria-hidden
-                className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/30 transition-opacity duration-300 ${
-                  isActive ? "opacity-0" : "opacity-0 group-hover:opacity-100"
-                }`}
-                style={{ width: ring, height: ring }}
-              />
+              {/* Rest hint ring — appears when hovering the artwork (framed scales only). */}
+              {framed && (
+                <span
+                  aria-hidden
+                  className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/30 transition-opacity duration-300 ${
+                    isActive ? "opacity-0" : "opacity-0 group-hover:opacity-100"
+                  }`}
+                  style={{ width: ring, height: ring }}
+                />
+              )}
 
               {/* Magnifier loupe. */}
               <span
                 aria-hidden
-                className="absolute inset-0 rounded-full shadow-lg shadow-primary/10 ring-1 ring-primary/25 transition-all duration-500 ease-out"
+                className={`absolute inset-0 rounded-full transition-all duration-500 ease-out ${
+                  framed ? "shadow-lg shadow-primary/10 ring-1 ring-primary/25" : ""
+                }`}
                 style={{
                   backgroundImage: `url(${IMG})`,
-                  backgroundSize: `${size.w * ZOOM}px ${size.h * ZOOM}px`,
-                  backgroundPosition: `${d / 2 - s.cx * size.w * ZOOM}px ${d / 2 - s.cy * size.h * ZOOM}px`,
-                  backgroundColor: "hsl(var(--background))",
+                  backgroundSize: `${size.w * z}px ${size.h * z}px`,
+                  backgroundPosition: `${d / 2 - s.cx * size.w * z}px ${d / 2 - s.cy * size.h * z}px`,
+                  backgroundColor: framed ? "hsl(var(--background))" : "transparent",
                   opacity: isActive ? 1 : 0,
                   transform: isActive ? "scale(1)" : "scale(0.6)",
                 }}
