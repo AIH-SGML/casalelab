@@ -40,6 +40,8 @@ const GENE = {
   mask: "radial-gradient(46% 33% at 66% 78%, #000 60%, transparent 100%)",
   lx: 0.7,
   ly: 0.93,
+  // Particles emerge from just above the helix strand (lower-left → upper-right).
+  emitLine: { x1: 0.45, y1: 0.83, x2: 0.9, y2: 0.49 },
 };
 
 const ZOOM = 1.5; // magnification inside the loupe
@@ -51,11 +53,17 @@ const HeroImage = () => {
   const [size, setSize] = useState({ w: 0, h: 0 });
   const activeRef = useRef<Scale | null>(null);
   const [active, setActive] = useState<Scale | null>(null);
+  const geneRef = useRef(false);
   const [geneActive, setGeneActive] = useState(false);
 
   const focus = (s: Scale | null) => {
     activeRef.current = s;
     setActive(s);
+  };
+
+  const focusGene = (on: boolean) => {
+    geneRef.current = on;
+    setGeneActive(on);
   };
 
   // Track the rendered image size so hotspot geometry stays accurate.
@@ -92,7 +100,7 @@ const HeroImage = () => {
     // Palette echoing the artwork: lab blue, violet cells, DNA teal.
     const palette = [primary, "262 52% 62%", "190 60% 52%"];
 
-    type P = { x: number; y: number; vx: number; vy: number; life: number; max: number; r: number; c: string };
+    type P = { x: number; y: number; vx: number; vy: number; life: number; max: number; r: number; c: string; a: number };
     let particles: P[] = [];
     let frame = 0;
 
@@ -115,14 +123,37 @@ const HeroImage = () => {
           max,
           r: 1.2 + Math.random() * 1.8,
           c: palette[Math.floor(Math.random() * palette.length)],
+          a: 0.85,
         });
       }
+    };
+
+    // Particles drifting up from just above the DNA strand — sparse and faint.
+    const spawnGene = () => {
+      if (particles.length > 55 || Math.random() > 0.6) return;
+      const { x1, y1, x2, y2 } = GENE.emitLine;
+      const t = Math.random();
+      const px = (x1 + (x2 - x1) * t) * size.w;
+      const py = (y1 + (y2 - y1) * t) * size.h;
+      const max = 55 + Math.random() * 55;
+      particles.push({
+        x: px + (Math.random() - 0.5) * 12,
+        y: py - Math.random() * 6, // emerge just above the strand
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: -0.12 - Math.random() * 0.4, // gently rise
+        life: max,
+        max,
+        r: 1 + Math.random() * 1.4,
+        c: palette[Math.floor(Math.random() * palette.length)],
+        a: 0.42,
+      });
     };
 
     const draw = () => {
       ctx.clearRect(0, 0, size.w, size.h);
       const s = activeRef.current;
       if (s) spawn(s);
+      if (geneRef.current) spawnGene();
 
       for (const p of particles) {
         p.x += p.vx;
@@ -138,7 +169,8 @@ const HeroImage = () => {
           const b = particles[j];
           const d = Math.hypot(a.x - b.x, a.y - b.y);
           if (d < 46) {
-            const alpha = (1 - d / 46) * 0.16 * Math.min(a.life / a.max, b.life / b.max);
+            const alpha =
+              (1 - d / 46) * 0.16 * Math.min((a.life / a.max) * a.a, (b.life / b.max) * b.a);
             ctx.strokeStyle = `hsl(${primary} / ${alpha})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
@@ -150,7 +182,7 @@ const HeroImage = () => {
       }
 
       for (const p of particles) {
-        const alpha = (p.life / p.max) * 0.85;
+        const alpha = (p.life / p.max) * p.a;
         ctx.fillStyle = `hsl(${p.c} / ${alpha})`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
@@ -158,7 +190,7 @@ const HeroImage = () => {
       }
 
       // Keep animating while a scale is active or particles remain.
-      if (activeRef.current || particles.length) {
+      if (activeRef.current || geneRef.current || particles.length) {
         frame = requestAnimationFrame(draw);
       } else {
         frame = 0;
@@ -170,7 +202,7 @@ const HeroImage = () => {
       if (!frame) frame = requestAnimationFrame(draw);
     };
     const interval = window.setInterval(() => {
-      if (activeRef.current) kick();
+      if (activeRef.current || geneRef.current) kick();
     }, 200);
 
     return () => {
@@ -218,10 +250,10 @@ const HeroImage = () => {
       <button
         type="button"
         aria-label={`Highlight ${GENE.label}`}
-        onMouseEnter={() => setGeneActive(true)}
-        onMouseLeave={() => setGeneActive(false)}
-        onFocus={() => setGeneActive(true)}
-        onBlur={() => setGeneActive(false)}
+        onMouseEnter={() => focusGene(true)}
+        onMouseLeave={() => focusGene(false)}
+        onFocus={() => focusGene(true)}
+        onBlur={() => focusGene(false)}
         className="absolute z-30 focus:outline-none"
         style={{
           left: `${GENE.box.x * 100}%`,
