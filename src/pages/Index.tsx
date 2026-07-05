@@ -13,7 +13,7 @@ const Index = () => (
           Towards mechanistic models of human disease
         </h1>
         <p className="text-base leading-7 text-muted-foreground sm:text-lg">
-          We develop AI systems that connect population-scale human data to biological mechanisms across scales
+          We develop computational frameworks that transform population-scale human data into mechanistic models of disease, generating testable hypotheses that accelerate biological discovery and therapeutic innovation.
         </p>
       </div>
 
