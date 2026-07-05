@@ -206,17 +206,17 @@ const researchDirections = [
   {
     title: "Learning biological phenotypes.",
     description:
-      "Developing quantitative intermediate phenotypes that reveal how genetic variation propagates across biological scales.",
+      "Developing quantitative representations of cells, tissues, and physiology that serve as intermediate phenotypes linking genetic variation to disease risk. These representations capture how genetic variation manifests at specific biological scales and enable the discovery of the biological programs and functional mechanisms linking genetic variation to disease.",
   },
   {
     title: "Localizing disease mechanisms.",
     description:
-      "Identifying the cells, cellular states, and tissue microenvironments through which genetic effects act.",
+      "Identifying the cells, cellular states, and tissue microenvironments through which genetic variation influences disease. By localizing where genetic effects act, we generate mechanistic explanations that connect molecular perturbations to organism-level phenotypes.",
   },
   {
     title: "Integrating human health.",
     description:
-      "Learning unified representations that connect genetics with clinical, molecular, and environmental data to uncover disease mechanisms across populations.",
+      "Developing AI systems that integrate molecular, cellular, imaging, clinical, and environmental data into coherent multi-scale models of human biology. We use naturally occurring genetic variation to probe these models, building mechanistic explanations of how biological processes across scales give rise to human disease.",
   },
 ];
 
@@ -232,10 +232,10 @@ const Research = () => (
         </h1>
         <p className="text-base text-foreground leading-relaxed">
           We develop AI systems that transform population-scale human data into
-          mechanistic understanding of disease. By combining machine learning,
-          statistical genetics, and multimodal biological data, we connect genetic
-          variation with biological processes across scales, from cells and tissues to
-          human health. Our research is organized around three complementary directions:
+          mechanistic understanding of disease. Our research combines machine learning,
+          statistical genetics, and multimodal biology to explain how genetic variation
+          shapes disease across biological scales. We pursue this through three
+          complementary research directions.
         </p>
         <ol className="space-y-2 pt-2">
           {researchDirections.map((direction, i) => (
