@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
+import htLogo from "@/assets/logos/ht-logo.png";
+import helmholtzMunichLogo from "@/assets/logos/helmholtz-munich.jpg";
 import teamImg1 from "@/assets/team/team-group-1.jpg";
 import teamImg2 from "@/assets/team/team-group-2.png";
 import teamImg3 from "@/assets/team/team-group-3.png";
@@ -86,7 +89,7 @@ const GroupCarousel = () => {
 const pi = {
   name: "Francesco Paolo Casale",
   role: "Principal Investigator",
-  bio: "After training in Physics at the University of Naples Federico II, Paolo completed a PhD in human genetics and statistical modeling at the University of Cambridge and EMBL-EBI, followed by postdoctoral work in AI for biology at Microsoft Research in Boston. He then led an interdisciplinary team at insitro in the San Francisco Bay Area, applying machine learning and human genetics to target discovery. Since 2022, he has been a Principal Investigator at Helmholtz Munich, where he leads a research program focused on modelling human disease across scales, integrating AI, genetics, and multimodal data to uncover the mechanisms linking genetic variation to health outcomes.",
+  bio: "After training in Physics at the University of Naples Federico II, Paolo completed a PhD in human genetics and statistical modeling at the University of Cambridge and EMBL-EBI, followed by postdoctoral work in AI for biology at Microsoft Research in Boston. He then led an interdisciplinary team at insitro in the San Francisco Bay Area, applying machine learning and human genetics to target discovery. Since 2022, he has been a Principal Investigator at Helmholtz Munich, where he leads a research program developing AI methods that integrate human genetics and multimodal data to build mechanistic models of disease. In September 2026, he will join Human Technopole as a Senior Group Leader, where the Casale Lab will launch its Human Technopole team working at the intersection of AI, human genetics, and disease biology.",
   photo: paoloImg,
 };
 
@@ -265,35 +268,54 @@ const People = () => (
 
       <hr className="border-t border-border" />
 
-      {/* Team members — postdocs + PhD students, sorted by last name */}
+      {/* Team members — Human Technopole team + current group at Helmholtz Munich */}
       <section className="space-y-8">
         <h2 className="text-xl font-semibold text-foreground" style={{ fontFamily: "var(--font-heading)" }}>
           Team Members
         </h2>
-        <div className="grid sm:grid-cols-2 gap-8">
-          {[...postdocs, ...phdStudents]
-            .sort((a, b) => {
-              const lastName = (name: string) => name.split(" ").slice(-1)[0];
-              return lastName(a.name).localeCompare(lastName(b.name));
-            })
-            .map((m) => <MemberCard key={m.name} {...m} />)}
+
+        {/* Human Technopole team */}
+        <div className="space-y-4">
+          <img src={htLogo} alt="Human Technopole" className="h-10 w-auto" />
+          <p className="text-sm text-foreground leading-relaxed max-w-2xl">
+            We are recruiting researchers to join the Casale Lab at Human Technopole, with the
+            team launching in September 2026. Explore upcoming opportunities on our{" "}
+            <Link
+              to="/jobs"
+              className="font-medium text-foreground hover:underline underline-offset-2 transition-colors"
+            >
+              Jobs page
+            </Link>
+            .
+          </p>
         </div>
-      </section>
 
-      <hr className="border-t border-border" />
+        {/* Current group at Helmholtz Munich */}
+        <div className="space-y-6 pt-4">
+          <img src={helmholtzMunichLogo} alt="Helmholtz Munich" className="h-10 w-auto" />
+          <div className="grid sm:grid-cols-2 gap-8">
+            {[...postdocs, ...phdStudents]
+              .sort((a, b) => {
+                const lastName = (name: string) => name.split(" ").slice(-1)[0];
+                return lastName(a.name).localeCompare(lastName(b.name));
+              })
+              .map((m) => <MemberCard key={m.name} {...m} />)}
+          </div>
 
-      {/* Alumni */}
-      <section className="space-y-8">
-        <h2 className="text-xl font-semibold text-foreground" style={{ fontFamily: "var(--font-heading)" }}>
-          Alumni
-        </h2>
-        <div className="grid sm:grid-cols-2 gap-8">
-          {alumni
-            .sort((a, b) => {
-              const lastName = (name: string) => name.split(" ").slice(-1)[0];
-              return lastName(a.name).localeCompare(lastName(b.name));
-            })
-            .map((m) => <MemberCard key={m.name} {...m} />)}
+          <h3
+            className="text-base font-semibold text-foreground pt-4"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
+            Alumni
+          </h3>
+          <div className="grid sm:grid-cols-2 gap-8">
+            {alumni
+              .sort((a, b) => {
+                const lastName = (name: string) => name.split(" ").slice(-1)[0];
+                return lastName(a.name).localeCompare(lastName(b.name));
+              })
+              .map((m) => <MemberCard key={m.name} {...m} />)}
+          </div>
         </div>
       </section>
 

@@ -8,8 +8,13 @@ type Publication = {
 };
 
 const labAuthorHighlights = [
-  "D. Sens",
+  "P. Hager",
+  "B. Roth",
+  "N. Bühler",
+  "D. Lu",
+  "J.H. Burks",
   "L. Shilova",
+  "D. Sens",
   "F.P. Casale",
   "S. Chaudhary",
   "A. Voigts",
@@ -26,6 +31,14 @@ const labPublicationsByYear: { year: string; items: Publication[] }[] = [
   {
     year: "2026",
     items: [
+      {
+        title:
+          "Learning the shared structure of human health across diseases, modalities, and time",
+        authors:
+          "P. Hager*, B. Roth*, N. Bühler*, D. Lu*, J.H. Burks, L. Shilova, R. Kfuri-Rubens, E. Roellin, J. Pan, M. Di Folco, E. Chan, J.A. Schnabel, L. Adams, D. Rueckert†, F.J. Theis†, F.P. Casale†",
+        venue: "medRxiv, 2026",
+        link: "https://medrxiv.org/cgi/content/short/2026.07.07.26357373v1",
+      },
       {
         title:
           "HistoGWAS: An AI-enabled framework for automated genetic analysis of tissue phenotypes in histology cohorts",

@@ -2,11 +2,12 @@ import PageLayout from "@/components/PageLayout";
 
 const tools = [
   {
-    name: "BayesRVAT",
+    name: "RisQ",
     description:
-      "A framework for rare variant association testing that improves power by aggregating multiple functional annotations within a Bayesian model.",
-    codeLink: "https://github.com/AIH-SGML/BayesRVAT",
-    paperLink: "https://genome.cshlp.org/content/35/12/2682",
+      "RisQ is a multimodal framework that learns a unified representation of human health across diseases, modalities, and time.",
+    codeLink: "https://github.com/RisQ-Lab/RisQ",
+    paperLink: "https://medrxiv.org/cgi/content/short/2026.07.07.26357373v1",
+    paperLabel: "Preprint",
   },
   {
     name: "HistoGWAS",
@@ -14,6 +15,7 @@ const tools = [
       "An AI-enabled framework for genetic analysis of tissue phenotypes in histology cohorts, spanning slide preprocessing, feature learning, genome-wide association, and downstream characterization.",
     codeLink: "https://github.com/AIH-SGML/HistoGWAS",
     paperLink: "https://doi.org/10.1186/s13059-026-04031-z",
+    paperLabel: "Paper",
   },
   {
     name: "MixMIL",
@@ -21,6 +23,15 @@ const tools = [
       "A multiple-instance learning framework with mixed effects for modeling single-cell data from microscopy and scRNA-seq.",
     codeLink: "https://github.com/AIH-SGML/mixmil",
     paperLink: "https://proceedings.mlr.press/v238/engelmann24a.html",
+    paperLabel: "Paper",
+  },
+  {
+    name: "BayesRVAT",
+    description:
+      "A framework for rare variant association testing that improves power by aggregating multiple functional annotations within a Bayesian model.",
+    codeLink: "https://github.com/AIH-SGML/BayesRVAT",
+    paperLink: "https://genome.cshlp.org/content/35/12/2682",
+    paperLabel: "Paper",
   },
   {
     name: "PRiMeR",
@@ -28,6 +39,7 @@ const tools = [
       "A framework for genetics-driven risk prediction using Mendelian randomization, with example workflows and notebooks for running the method on synthetic or cohort-style data.",
     codeLink: "https://github.com/AIH-SGML/PRiMeR",
     paperLink: "https://www.genome.org/cgi/doi/10.1101/gr.279252.124",
+    paperLabel: "Paper",
   },
 ];
 
@@ -59,14 +71,20 @@ const Software = () => (
                 Code
               </a>
               {" · "}
-              <a
-                href={tool.paperLink}
-                target="_blank"
-                rel="noreferrer"
-                className="text-accent transition-colors hover:text-foreground"
-              >
-                Paper
-              </a>
+              {tool.paperLink ? (
+                <a
+                  href={tool.paperLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-accent transition-colors hover:text-foreground"
+                >
+                  {tool.paperLabel}
+                </a>
+              ) : (
+                <span className="text-muted-foreground/50" aria-disabled="true">
+                  {tool.paperLabel}
+                </span>
+              )}
             </p>
           </div>
         ))}

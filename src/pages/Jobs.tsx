@@ -1,33 +1,42 @@
 import { Link } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
+import htLogo from "@/assets/logos/ht-logo.png";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const openings = [
   {
-    title: "Postdoctoral Researcher in AI for Genomics",
-    deadline: "October 2026",
-    href: "/jobs/postdoc-human-genetics",
+    title: "Postdoc in Statistical Genetics",
+    deadline: (
+      <>
+        Expressions of interest: Now
+        <br />
+        Formal applications: September 2026
+      </>
+    ),
+    href: "/jobs/postdoc-statistical-genetics",
   },
   {
-    title: "Postdoctoral Researcher in AI for Health",
-    deadline: "October 2026",
-    href: "/jobs/postdoc-ml-health",
+    title: "Postdoc in AI for Biomedicine",
+    deadline: (
+      <>
+        Expressions of interest: Now
+        <br />
+        Formal applications: September 2026
+      </>
+    ),
+    href: "/jobs/postdoc-ai-biomedicine",
   },
   {
     title: "Senior AI Research Scientist",
-    deadline: "October 2026",
+    deadline: (
+      <>
+        Expressions of interest: Now
+        <br />
+        Formal applications: September 2026
+      </>
+    ),
     href: "/jobs/ai-scientist",
-  },
-  {
-    title: "PhD Student Positions (2)",
-    deadline: "October 2026",
-    href: "/jobs/phd-students",
-  },
-  {
-    title: "Open Application",
-    deadline: "Always Open",
-    href: "/jobs/open-application",
   },
 ];
 
@@ -68,11 +77,10 @@ const Jobs = () => (
           Open Positions
         </h1>
         <p className="text-base text-foreground leading-relaxed">
-          We are building an interdisciplinary research group at the intersection of AI,
-          human genetics, and disease biology. Our goal is to develop AI systems that
-          transform population-scale human data into mechanistic understanding of disease.
-          We welcome researchers who enjoy fundamental scientific questions, thrive across
-          disciplines, and want to build methods with lasting scientific impact.
+          We are recruiting researchers to join the Casale Lab team at Human Technopole, launching
+          in September 2026. The team will advance an established research program in AI, human
+          genetics, and disease biology, developing AI systems that transform population-scale
+          human data into mechanistic understanding of disease.
         </p>
       </header>
 
@@ -85,14 +93,40 @@ const Jobs = () => (
               to={job.href}
               target="_blank"
               rel="noreferrer"
-              className="block border border-border rounded-sm p-5 hover:bg-muted/50 transition-colors"
+              className="flex items-start justify-between gap-4 border border-border rounded-sm p-5 hover:bg-muted/50 transition-colors"
             >
-              <p className="font-semibold text-foreground leading-snug">{job.title}</p>
-              <p className="text-xs text-foreground/50 mt-1.5">Deadline: {job.deadline}</p>
+              <div className="min-w-0">
+                <p className="font-semibold text-foreground leading-snug">{job.title}</p>
+                <p className="text-xs text-foreground/50 mt-1.5">{job.deadline}</p>
+              </div>
+              <img
+                src={htLogo}
+                alt="Human Technopole"
+                className="h-8 w-auto shrink-0"
+              />
             </Link>
           ))}
         </div>
 
+        <p className="text-sm text-foreground leading-relaxed pt-1">
+          We expect to have multiple PhD openings in the next{" "}
+          <a
+            href="https://www.polimi.it/en/phd/prospective-phd-candidates/admission/when-to-apply"
+            target="_blank"
+            rel="noreferrer"
+            className="font-semibold text-[#4b9b63] hover:text-[#34754a] hover:underline underline-offset-2 transition-colors"
+          >
+            DADS PhD call
+          </a>
+          . For informal enquiries before the call opens, please contact us at{" "}
+          <a
+            href="mailto:casalelab.jobs@gmail.com"
+            className="font-semibold text-[#4b9b63] hover:text-[#34754a] hover:underline underline-offset-2 transition-colors"
+          >
+            casalelab.jobs@gmail.com
+          </a>
+          .
+        </p>
       </section>
 
 
