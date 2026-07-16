@@ -8,9 +8,7 @@ type Publication = {
 };
 
 const labAuthorHighlights = [
-  "P. Hager",
   "B. Roth",
-  "N. Bühler",
   "D. Lu",
   "J.H. Burks",
   "L. Shilova",
