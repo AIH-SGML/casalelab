@@ -7,6 +7,7 @@ import Publications from "./pages/Publications";
 import People from "./pages/People";
 import Jobs from "./pages/Jobs";
 import AiScientist from "./pages/jobs/AiScientist";
+import PhdPositions from "./pages/jobs/PhdPositions";
 import PostdocStatisticalGenetics from "./pages/jobs/PostdocStatisticalGenetics";
 import PostdocAiBiomedicine from "./pages/jobs/PostdocAiBiomedicine";
 import Software from "./pages/Software";
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/team" element={<People />} />
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/jobs/ai-scientist" element={<AiScientist />} />
+          <Route path="/jobs/phd-positions" element={<PhdPositions />} />
           <Route path="/jobs/postdoc-statistical-genetics" element={<PostdocStatisticalGenetics />} />
           <Route path="/jobs/postdoc-ai-biomedicine" element={<PostdocAiBiomedicine />} />
           <Route path="/software" element={<Software />} />

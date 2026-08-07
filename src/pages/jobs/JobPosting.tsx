@@ -7,10 +7,12 @@ import PageLayout from "@/components/PageLayout";
 export const JobPosting = ({
   title,
   location,
+  status = "Formal recruitment opens September 7, 2026",
   children,
 }: {
   title: string;
   location: string;
+  status?: ReactNode;
   children: ReactNode;
 }) => (
   <PageLayout>
@@ -30,7 +32,7 @@ export const JobPosting = ({
           {title}
         </h1>
         <p className="text-sm font-medium text-foreground/70">{location}</p>
-        <p className="text-sm text-foreground/50">Formal recruitment opens September 7, 2026</p>
+        <p className="text-sm text-foreground/50">{status}</p>
       </div>
 
       <hr className="border-t border-border" />

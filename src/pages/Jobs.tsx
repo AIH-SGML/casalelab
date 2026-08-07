@@ -6,6 +6,19 @@ import htLogo from "@/assets/logos/ht-logo.png";
 
 const openings = [
   {
+    title: "2 Fully Funded PhD Positions",
+    deadline: (
+      <>
+        <span className="font-semibold text-[#4b9b63]">Applications OPEN NOW</span>
+        <br />
+        Closes: <strong>18 Sept 2026, 14:00 CEST</strong>
+        <br />
+        Start date: <strong>1 November 2026</strong>
+      </>
+    ),
+    href: "/jobs/phd-positions",
+  },
+  {
     title: "Postdoc in Statistical Genetics",
     deadline: (
       <>
@@ -93,7 +106,7 @@ const Jobs = () => (
               to={job.href}
               target="_blank"
               rel="noreferrer"
-              className="flex items-start justify-between gap-4 border border-border rounded-sm p-5 hover:bg-muted/50 transition-colors"
+              className="flex min-h-[8.5rem] items-start justify-between gap-4 border border-border rounded-sm p-5 hover:bg-muted/50 transition-colors"
             >
               <div className="min-w-0">
                 <p className="font-semibold text-foreground leading-snug">{job.title}</p>
@@ -109,16 +122,9 @@ const Jobs = () => (
         </div>
 
         <p className="text-sm text-foreground leading-relaxed pt-1">
-          We expect to have multiple PhD openings in the next{" "}
-          <a
-            href="https://www.polimi.it/en/phd/prospective-phd-candidates/admission/when-to-apply"
-            target="_blank"
-            rel="noreferrer"
-            className="font-semibold text-[#4b9b63] hover:text-[#34754a] hover:underline underline-offset-2 transition-colors"
-          >
-            DADS PhD call
-          </a>
-          . For informal enquiries before the call opens, please contact us at{" "}
+          The PhD positions are formally open and accepting applications now. The postdoc and
+          Senior AI Research Scientist positions are not yet formally open; we are currently
+          collecting expressions of interest ahead of the September calls. For enquiries, contact{" "}
           <a
             href="mailto:casalelab.jobs@gmail.com"
             className="font-semibold text-[#4b9b63] hover:text-[#34754a] hover:underline underline-offset-2 transition-colors"
