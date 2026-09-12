@@ -35,7 +35,7 @@ const labPublicationsByYear: { year: string; items: Publication[] }[] = [
         authors:
           "P. Hager*, B. Roth*, N. Bühler*, D. Lu*, J.H. Burks, L. Shilova, R. Kfuri-Rubens, E. Roellin, J. Pan, M. Di Folco, E. Chan, J.A. Schnabel, L. Adams, D. Rueckert†, F.J. Theis†, F.P. Casale†",
         venue: "medRxiv, 2026",
-        link: "https://medrxiv.org/cgi/content/short/2026.07.07.26357373v1",
+        link: "https://www.medrxiv.org/content/10.64898/2026.07.07.26357373v1",
       },
       {
         title:

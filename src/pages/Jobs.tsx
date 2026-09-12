@@ -90,10 +90,10 @@ const Jobs = () => (
           Open Positions
         </h1>
         <p className="text-base text-foreground leading-relaxed">
-          We are recruiting researchers to join the Casale Lab team at Human Technopole, launching
-          in September 2026. The team will advance an established research program in AI, human
-          genetics, and disease biology, developing AI systems that transform population-scale
-          human data into mechanistic understanding of disease.
+          We are recruiting researchers to join the Casale Lab team at Human Technopole. The team
+          aims to advance an established research program in AI, human genetics, and disease
+          biology, developing AI systems that transform population-scale human data into
+          mechanistic understanding of disease.
         </p>
       </header>
 

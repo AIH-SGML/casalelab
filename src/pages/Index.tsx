@@ -37,12 +37,7 @@ const Index = () => (
       <div className="grid sm:grid-cols-2 gap-4">
         <InfoCard label="Locations">
           <img src={helmholtzMunichLogo} alt="Helmholtz Munich" className="h-9 w-auto" />
-          <span className="inline-flex flex-col items-center gap-1">
-            <img src={htLogo} alt="Human Technopole" className="h-9 w-auto" />
-            <span className="text-[10px] uppercase tracking-[0.14em] text-foreground/45">
-              from Sept 2026
-            </span>
-          </span>
+          <img src={htLogo} alt="Human Technopole" className="h-9 w-auto" />
         </InfoCard>
         <InfoCard label="Funding">
           <img src={helmholtzAiLogo} alt="Helmholtz AI" className="h-8 w-auto" />

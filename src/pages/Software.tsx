@@ -6,7 +6,7 @@ const tools = [
     description:
       "RisQ is a multimodal framework that learns a unified representation of human health across diseases, modalities, and time.",
     codeLink: "https://github.com/RisQ-Lab/RisQ",
-    paperLink: "https://medrxiv.org/cgi/content/short/2026.07.07.26357373v1",
+    paperLink: "https://www.medrxiv.org/content/10.64898/2026.07.07.26357373v1",
     paperLabel: "Preprint",
   },
   {

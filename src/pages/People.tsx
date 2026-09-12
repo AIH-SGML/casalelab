@@ -89,7 +89,7 @@ const GroupCarousel = () => {
 const pi = {
   name: "Francesco Paolo Casale",
   role: "Principal Investigator",
-  bio: "After training in Physics at the University of Naples Federico II, Paolo completed a PhD in human genetics and statistical modeling at the University of Cambridge and EMBL-EBI, followed by postdoctoral work in AI for biology at Microsoft Research in Boston. He then led an interdisciplinary team at insitro in the San Francisco Bay Area, applying machine learning and human genetics to target discovery. Since 2022, he has been a Principal Investigator at Helmholtz Munich, where he leads a research program developing AI methods that integrate human genetics and multimodal data to build mechanistic models of disease. In September 2026, he will join Human Technopole as a Senior Group Leader, where the Casale Lab will launch its Human Technopole team working at the intersection of AI, human genetics, and disease biology.",
+  bio: "After training in Physics at the University of Naples Federico II, Paolo completed a PhD in human genetics and statistical modeling at the University of Cambridge and EMBL-EBI, followed by postdoctoral work in AI for biology at Microsoft Research in Boston. He then led an interdisciplinary team at insitro in the San Francisco Bay Area, applying machine learning and human genetics to target discovery. Since 2022, he has been a Principal Investigator at Helmholtz Munich, where he leads a research program developing AI methods that integrate human genetics and multimodal data to build mechanistic models of disease. In September 2026, he joined Human Technopole as a Senior Research Group Leader.",
   photo: paoloImg,
 };
 
@@ -278,8 +278,8 @@ const People = () => (
         <div className="space-y-4">
           <img src={htLogo} alt="Human Technopole" className="h-10 w-auto" />
           <p className="text-sm text-foreground leading-relaxed max-w-2xl">
-            We are recruiting researchers to join the Casale Lab at Human Technopole, with the
-            team launching in September 2026. Explore upcoming opportunities on our{" "}
+            We are recruiting researchers to join the Casale Lab at Human Technopole. Find
+            existing and upcoming opportunities on our{" "}
             <Link
               to="/jobs"
               className="font-medium text-foreground hover:underline underline-offset-2 transition-colors"
