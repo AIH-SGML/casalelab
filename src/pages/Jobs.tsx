@@ -6,19 +6,6 @@ import htLogo from "@/assets/logos/ht-logo.png";
 
 const openings = [
   {
-    title: "2 Fully Funded PhD Positions",
-    deadline: (
-      <>
-        <span className="font-semibold text-foreground/60">Applications CLOSED</span>
-        <br />
-        Closed: <strong>18 Sept 2026, 14:00 CEST</strong>
-        <br />
-        Start date: <strong>1 November 2026</strong>
-      </>
-    ),
-    href: "/jobs/phd-positions",
-  },
-  {
     title: "Postdoc in Statistical Genetics",
     deadline: (
       <>
@@ -50,6 +37,19 @@ const openings = [
       </>
     ),
     href: "/jobs/ai-scientist",
+  },
+  {
+    title: "2 Fully Funded PhD Positions",
+    deadline: (
+      <>
+        <span className="font-semibold text-red-600">Applications CLOSED</span>
+        <br />
+        Closed: <strong>18 Sept 2026, 14:00 CEST</strong>
+        <br />
+        Start date: <strong>1 November 2026</strong>
+      </>
+    ),
+    href: "/jobs/phd-positions",
   },
 ];
 

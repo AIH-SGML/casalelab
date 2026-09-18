@@ -22,7 +22,7 @@ const PhdPositions = () => (
   <JobPosting
     title="2 Fully Funded PhD Positions"
     location="Politecnico di Milano / Human Technopole"
-    status={<span className="font-semibold text-foreground/60">Applications are CLOSED</span>}
+    status={<span className="font-semibold text-red-600">Applications are CLOSED</span>}
   >
     <Section title="Overview">
       <Prose>
