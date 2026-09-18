@@ -9,9 +9,9 @@ const openings = [
     title: "2 Fully Funded PhD Positions",
     deadline: (
       <>
-        <span className="font-semibold text-[#4b9b63]">Applications OPEN NOW</span>
+        <span className="font-semibold text-foreground/60">Applications CLOSED</span>
         <br />
-        Closes: <strong>18 Sept 2026, 14:00 CEST</strong>
+        Closed: <strong>18 Sept 2026, 14:00 CEST</strong>
         <br />
         Start date: <strong>1 November 2026</strong>
       </>
@@ -122,9 +122,9 @@ const Jobs = () => (
         </div>
 
         <p className="text-sm text-foreground leading-relaxed pt-1">
-          The PhD positions are formally open and accepting applications now. The postdoc and
-          Senior AI Research Scientist positions are not yet formally open; we are currently
-          collecting expressions of interest ahead of the September calls. For enquiries, contact{" "}
+          The PhD application deadline has passed. We are currently collecting expressions of
+          interest for postdoc and Senior AI Research Scientist positions ahead of formal calls.
+          For enquiries, contact{" "}
           <a
             href="mailto:casalelab.jobs@gmail.com"
             className="font-semibold text-[#4b9b63] hover:text-[#34754a] hover:underline underline-offset-2 transition-colors"

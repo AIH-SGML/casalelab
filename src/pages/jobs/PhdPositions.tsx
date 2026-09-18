@@ -22,7 +22,7 @@ const PhdPositions = () => (
   <JobPosting
     title="2 Fully Funded PhD Positions"
     location="Politecnico di Milano / Human Technopole"
-    status={<span className="font-semibold text-[#4b9b63]">Applications are OPEN NOW</span>}
+    status={<span className="font-semibold text-foreground/60">Applications are CLOSED</span>}
   >
     <Section title="Overview">
       <Prose>
@@ -49,7 +49,7 @@ const PhdPositions = () => (
         <li className="flex gap-2">
           <span className="shrink-0 text-foreground/40 select-none">•</span>
           <span>
-            <strong>Application deadline:</strong> 18 September 2026, 14:00 CEST
+            <strong>Application deadline (closed):</strong> 18 September 2026, 14:00 CEST
           </span>
         </li>
         <li className="flex gap-2">
@@ -115,16 +115,7 @@ const PhdPositions = () => (
     </Section>
 
     <Section title="Apply">
-      <div className="space-y-4">
-        <a
-          href="https://www.polimi.it/en/phd/prospective-phd-candidates/admission/how-to-apply"
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center rounded-sm bg-[#4b9b63] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#34754a]"
-        >
-          Apply Now
-        </a>
-      </div>
+      <Prose>Applications for this call are now closed.</Prose>
     </Section>
   </JobPosting>
 );
