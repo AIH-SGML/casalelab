@@ -121,12 +121,16 @@ export const ORG_SOCIAL: string[] = [
   "Self-motivated, proactive, and eager to take ownership of ambitious research projects.",
 ];
 
-export const HowToApply = () => (
+export const HowToApply = ({
+  openingTiming = "on September 7, 2026",
+}: {
+  openingTiming?: string;
+}) => (
   <Section title="How to apply">
     <Prose>
-      Formal applications will open on <strong>September 7, 2026</strong> through the official
-      Human Technopole recruitment portal and will require a curriculum vitae, a motivation
-      letter, and the contact details of two referees.
+      Formal applications will open <strong>{openingTiming}</strong> through the official Human
+      Technopole recruitment portal and will require a curriculum vitae, a motivation letter, and
+      the contact details of two referees.
     </Prose>
     <Prose>
       Prospective candidates are encouraged to contact the lab before the official call opens by

@@ -9,23 +9,29 @@ const openings = [
     title: "Postdoc in Statistical Genetics",
     deadline: (
       <>
-        Expressions of interest: Now
+        <span className="font-semibold text-[#4b9b63]">Applications OPEN NOW</span>
         <br />
-        Formal applications: September 2026
+        Application <strong>closing date:</strong> <strong>04.11.2026</strong>
+        <br />
+        Preferred start: <strong>January 2027</strong>
       </>
     ),
-    href: "/jobs/postdoc-statistical-genetics",
+    href: "https://careers.humantechnopole.it/job/Postdoc-in-Statistical-Genetics-Casale-Group/869-en_GB",
+    external: true,
   },
   {
     title: "Postdoc in AI for Biomedicine",
     deadline: (
       <>
-        Expressions of interest: Now
+        <span className="font-semibold text-[#4b9b63]">Applications OPEN NOW</span>
         <br />
-        Formal applications: September 2026
+        Application <strong>closing date:</strong> <strong>04.11.2026</strong>
+        <br />
+        Preferred start: <strong>January 2027</strong>
       </>
     ),
-    href: "/jobs/postdoc-ai-biomedicine",
+    href: "https://careers.humantechnopole.it/job/Postdoc-in-AI-for-Biomedicine-Casale-Group/871-en_GB",
+    external: true,
   },
   {
     title: "Senior AI Research Scientist",
@@ -33,7 +39,7 @@ const openings = [
       <>
         Expressions of interest: Now
         <br />
-        Formal applications: September 2026
+        Formal call opening soon
       </>
     ),
     href: "/jobs/ai-scientist",
@@ -90,41 +96,63 @@ const Jobs = () => (
           Open Positions
         </h1>
         <p className="text-base text-foreground leading-relaxed">
-          We are recruiting researchers to join the Casale Lab team at Human Technopole. The team
+          We are recruiting postdocs to join the Casale Lab team at Human Technopole. The team
           aims to advance an established research program in AI, human genetics, and disease
           biology, developing AI systems that transform population-scale human data into
-          mechanistic understanding of disease.
+          mechanistic understanding of disease. The Senior AI Research Scientist position will
+          open soon.
         </p>
       </header>
 
       {/* Current openings */}
       <section className="space-y-4">
         <div className="grid sm:grid-cols-2 gap-4">
-          {openings.map((job) => (
-            <Link
-              key={job.href}
-              to={job.href}
-              target="_blank"
-              rel="noreferrer"
-              className="flex min-h-[8.5rem] items-start justify-between gap-4 border border-border rounded-sm p-5 hover:bg-muted/50 transition-colors"
-            >
-              <div className="min-w-0">
-                <p className="font-semibold text-foreground leading-snug">{job.title}</p>
-                <p className="text-xs text-foreground/50 mt-1.5">{job.deadline}</p>
-              </div>
-              <img
-                src={htLogo}
-                alt="Human Technopole"
-                className="h-8 w-auto shrink-0"
-              />
-            </Link>
-          ))}
+          {openings.map((job) => {
+            const cardContent = (
+              <>
+                <div className="min-w-0">
+                  <p className="font-semibold text-foreground leading-snug">{job.title}</p>
+                  <p className="text-xs text-foreground/50 mt-1.5">{job.deadline}</p>
+                </div>
+                <img
+                  src={htLogo}
+                  alt="Human Technopole"
+                  className="h-8 w-auto shrink-0"
+                />
+              </>
+            );
+            const cardClass =
+              "flex min-h-[8.5rem] items-start justify-between gap-4 border border-border rounded-sm p-5 hover:bg-muted/50 transition-colors";
+
+            return job.external ? (
+              <a
+                key={job.href}
+                href={job.href}
+                target="_blank"
+                rel="noreferrer"
+                className={cardClass}
+              >
+                {cardContent}
+              </a>
+            ) : (
+              <Link
+                key={job.href}
+                to={job.href}
+                target="_blank"
+                rel="noreferrer"
+                className={cardClass}
+              >
+                {cardContent}
+              </Link>
+            );
+          })}
         </div>
 
         <p className="text-sm text-foreground leading-relaxed pt-1">
-          The PhD application deadline has passed. We are currently collecting expressions of
-          interest for postdoc and Senior AI Research Scientist positions ahead of formal calls.
-          For enquiries, contact{" "}
+          The postdoc positions are open for applications through the Human Technopole careers
+          website. Preferred start is January 2027; alternative start dates can be discussed. We
+          are collecting expressions of interest for the Senior AI Research Scientist position
+          ahead of the formal call. For pre-enquiries, contact{" "}
           <a
             href="mailto:casalelab.jobs@gmail.com"
             className="font-semibold text-[#4b9b63] hover:text-[#34754a] hover:underline underline-offset-2 transition-colors"

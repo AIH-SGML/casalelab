@@ -68,7 +68,7 @@ const AiScientist = () => (
       <Bullets items={ORG_SOCIAL} />
     </Section>
 
-    <HowToApply />
+    <HowToApply openingTiming="in September 2026" />
   </JobPosting>
 );
 
