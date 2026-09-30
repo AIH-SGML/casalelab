@@ -6,6 +6,20 @@ import htLogo from "@/assets/logos/ht-logo.png";
 
 const openings = [
   {
+    title: "Senior AI Research Scientist",
+    deadline: (
+      <>
+        <span className="font-semibold text-[#4b9b63]">Applications OPEN NOW</span>
+        <br />
+        Application <strong>closing date:</strong> <strong>11.11.2026</strong>
+        <br />
+        Preferred start: <strong>January 2027</strong>
+      </>
+    ),
+    href: "https://careers.humantechnopole.it/job/AI-Scientist/875-en_GB",
+    external: true,
+  },
+  {
     title: "Postdoc in Statistical Genetics",
     deadline: (
       <>
@@ -32,17 +46,6 @@ const openings = [
     ),
     href: "https://careers.humantechnopole.it/job/Postdoc-in-AI-for-Biomedicine-Casale-Group/871-en_GB",
     external: true,
-  },
-  {
-    title: "Senior AI Research Scientist",
-    deadline: (
-      <>
-        Expressions of interest: Now
-        <br />
-        Formal call opening soon
-      </>
-    ),
-    href: "/jobs/ai-scientist",
   },
   {
     title: "2 Fully Funded PhD Positions",
@@ -96,11 +99,10 @@ const Jobs = () => (
           Open Positions
         </h1>
         <p className="text-base text-foreground leading-relaxed">
-          We are recruiting postdocs to join the Casale Lab team at Human Technopole. The team
+          We are recruiting researchers to join the Casale Lab team at Human Technopole. The team
           aims to advance an established research program in AI, human genetics, and disease
           biology, developing AI systems that transform population-scale human data into
-          mechanistic understanding of disease. The Senior AI Research Scientist position will
-          open soon.
+          mechanistic understanding of disease.
         </p>
       </header>
 
@@ -149,17 +151,8 @@ const Jobs = () => (
         </div>
 
         <p className="text-sm text-foreground leading-relaxed pt-1">
-          The postdoc positions are open for applications through the Human Technopole careers
-          website. Preferred start is January 2027; alternative start dates can be discussed. We
-          are collecting expressions of interest for the Senior AI Research Scientist position
-          ahead of the formal call. For pre-enquiries, contact{" "}
-          <a
-            href="mailto:casalelab.jobs@gmail.com"
-            className="font-semibold text-[#4b9b63] hover:text-[#34754a] hover:underline underline-offset-2 transition-colors"
-          >
-            casalelab.jobs@gmail.com
-          </a>
-          .
+          The open positions are accepting applications through the Human Technopole careers
+          website. Preferred start is January 2027; alternative start dates can be discussed.
         </p>
       </section>
 
