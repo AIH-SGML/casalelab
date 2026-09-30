@@ -6,7 +6,7 @@ import htLogo from "@/assets/logos/ht-logo.png";
 
 const openings = [
   {
-    title: "Senior AI Research Scientist",
+    title: "AI Scientist",
     deadline: (
       <>
         <span className="font-semibold text-[#4b9b63]">Applications OPEN NOW</span>

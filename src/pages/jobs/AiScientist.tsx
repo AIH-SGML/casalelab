@@ -12,12 +12,12 @@ import {
 } from "./JobPosting";
 
 const AiScientist = () => (
-  <JobPosting title="Senior AI Research Scientist" location={LOCATION}>
+  <JobPosting title="AI Scientist" location={LOCATION}>
     <Intro />
 
     <Section title="Your mission">
       <Prose>
-        We are seeking an ambitious Senior AI Research Scientist to build the computational
+        We are seeking an ambitious AI Scientist to build the computational
         foundations of the lab's research program. You will develop scalable AI systems that
         integrate multimodal biomedical data into reusable computational models for biological
         discovery.
