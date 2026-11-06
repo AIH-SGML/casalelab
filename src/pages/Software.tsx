@@ -26,6 +26,14 @@ const tools = [
     paperLabel: "Paper",
   },
   {
+    name: "SpaceDX",
+    description:
+      "A framework for population-level spatial transcriptomics that jointly localizes and tests differential expression, revealing the tissue contexts in which expression changes arise.",
+    codeLink: "https://github.com/AIH-SGML/SpaceDX",
+    paperLink: "https://www.biorxiv.org/content/10.64898/2026.10.28.758685v1",
+    paperLabel: "Preprint",
+  },
+  {
     name: "BayesRVAT",
     description:
       "A framework for rare variant association testing that improves power by aggregating multiple functional annotations within a Bayesian model.",

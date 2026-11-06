@@ -9,6 +9,7 @@ type Publication = {
 
 const labAuthorHighlights = [
   "B. Roth",
+  "N. Stotzem",
   "D. Lu",
   "J.H. Burks",
   "L. Shilova",
@@ -29,6 +30,13 @@ const labPublicationsByYear: { year: string; items: Publication[] }[] = [
   {
     year: "2026",
     items: [
+      {
+        title:
+          "Joint localization and testing reveals spatial context of differential expression",
+        authors: "N. Stotzem, S. Chang, N. Cai†, F.P. Casale†",
+        venue: "bioRxiv, 2026",
+        link: "https://www.biorxiv.org/content/10.64898/2026.10.28.758685v1",
+      },
       {
         title:
           "Learning the shared structure of human health across diseases, modalities, and time",
