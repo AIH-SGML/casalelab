@@ -1,10 +1,18 @@
 import { Link } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
 import htLogo from "@/assets/logos/ht-logo.png";
+import type { ReactNode } from "react";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
-const openings = [
+type Opening = {
+  title: string;
+  deadline: ReactNode;
+  href?: string;
+  external?: boolean;
+};
+
+const openings: Opening[] = [
   {
     title: "AI Scientist",
     deadline: (
@@ -20,12 +28,22 @@ const openings = [
     external: true,
   },
   {
+    title: "PhD Position",
+    deadline: (
+      <>
+        <span className="font-semibold text-amber-600">Applications OPENING SOON</span>
+        <br />
+        Applications <strong>open:</strong> <strong>14.12.2026</strong>
+      </>
+    ),
+  },
+  {
     title: "Postdoc in Statistical Genetics",
     deadline: (
       <>
-        <span className="font-semibold text-[#4b9b63]">Applications OPEN NOW</span>
+        <span className="font-semibold text-red-600">Applications CLOSED</span>
         <br />
-        Application <strong>closing date:</strong> <strong>04.11.2026</strong>
+        Closed: <strong>04.11.2026</strong>
         <br />
         Preferred start: <strong>January 2027</strong>
       </>
@@ -37,28 +55,15 @@ const openings = [
     title: "Postdoc in AI for Biomedicine",
     deadline: (
       <>
-        <span className="font-semibold text-[#4b9b63]">Applications OPEN NOW</span>
+        <span className="font-semibold text-red-600">Applications CLOSED</span>
         <br />
-        Application <strong>closing date:</strong> <strong>04.11.2026</strong>
+        Closed: <strong>04.11.2026</strong>
         <br />
         Preferred start: <strong>January 2027</strong>
       </>
     ),
     href: "https://careers.humantechnopole.it/job/Postdoc-in-AI-for-Biomedicine-Casale-Group/871-en_GB",
     external: true,
-  },
-  {
-    title: "2 Fully Funded PhD Positions",
-    deadline: (
-      <>
-        <span className="font-semibold text-red-600">Applications CLOSED</span>
-        <br />
-        Closed: <strong>18 Sept 2026, 14:00 CEST</strong>
-        <br />
-        Start date: <strong>1 November 2026</strong>
-      </>
-    ),
-    href: "/jobs/phd-positions",
   },
 ];
 
@@ -99,10 +104,9 @@ const Jobs = () => (
           Open Positions
         </h1>
         <p className="text-base text-foreground leading-relaxed">
-          We are recruiting researchers to join the Casale Lab team at Human Technopole. The team
-          aims to advance an established research program in AI, human genetics, and disease
-          biology, developing AI systems that transform population-scale human data into
-          mechanistic understanding of disease.
+          The Casale Lab team at Human Technopole aims to develop AI systems that transform
+          population-scale human data into mechanistic understanding of disease. Our research
+          program is interdisciplinary, spanning AI, human genetics, and disease biology.
         </p>
       </header>
 
@@ -123,8 +127,17 @@ const Jobs = () => (
                 />
               </>
             );
-            const cardClass =
-              "flex min-h-[8.5rem] items-start justify-between gap-4 border border-border rounded-sm p-5 hover:bg-muted/50 transition-colors";
+            const staticCardClass =
+              "flex min-h-[8.5rem] items-start justify-between gap-4 border border-border rounded-sm p-5";
+            const cardClass = `${staticCardClass} hover:bg-muted/50 transition-colors`;
+
+            if (!job.href) {
+              return (
+                <div key={job.title} className={staticCardClass}>
+                  {cardContent}
+                </div>
+              );
+            }
 
             return job.external ? (
               <a
@@ -149,11 +162,6 @@ const Jobs = () => (
             );
           })}
         </div>
-
-        <p className="text-sm text-foreground leading-relaxed pt-1">
-          The open positions are accepting applications through the Human Technopole careers
-          website. Preferred start is January 2027; alternative start dates can be discussed.
-        </p>
       </section>
 
 
