@@ -21,6 +21,7 @@ import jamisonImg from "@/assets/people/jamison_burks.png";
 import janImg from "@/assets/people/jan_engelman.png";
 import liubovImg from "@/assets/people/liubov_shilova.png";
 import mairiImg from "@/assets/people/mairi_mcclean.png";
+import missingImg from "@/assets/people/misspic.png";
 import martinImg from "@/assets/people/martin_meinel.png";
 import niklasImg from "@/assets/people/niklas_stotzem.png";
 import paoloImg from "@/assets/people/paolo_casale.png";
@@ -92,6 +93,21 @@ const pi = {
   bio: "After training in Physics at the University of Naples Federico II, Paolo completed a PhD in human genetics and statistical modeling at the University of Cambridge and EMBL-EBI, followed by postdoctoral work in AI for biology at Microsoft Research in Boston. He then led an interdisciplinary team at insitro in the San Francisco Bay Area, applying machine learning and human genetics to target discovery. Since 2022, he has been a Principal Investigator at Helmholtz Munich, where he leads a research program developing AI methods that integrate human genetics and multimodal data to build mechanistic models of disease. In September 2026, he joined Human Technopole as a Senior Research Group Leader.",
   photo: paoloImg,
 };
+
+const htTeam = [
+  {
+    name: "Lorenzo Sciacca",
+    role: "PhD Student",
+    description: "Develops AI and statistical methods for large-scale single-cell and genetic cohorts.",
+    photo: missingImg,
+  },
+  {
+    name: "Nicolò Signani",
+    role: "PhD Student",
+    description: "Learns biological representations of tissue to study ageing, chronic stress, and disease processes.",
+    photo: missingImg,
+  },
+];
 
 const postdocs = [
   {
@@ -288,6 +304,14 @@ const People = () => (
             </Link>
             .
           </p>
+          <div className="grid sm:grid-cols-2 gap-8 pt-2">
+            {[...htTeam]
+              .sort((a, b) => {
+                const lastName = (name: string) => name.split(" ").slice(-1)[0];
+                return lastName(a.name).localeCompare(lastName(b.name));
+              })
+              .map((m) => <MemberCard key={m.name} {...m} />)}
+          </div>
         </div>
 
         {/* Current group at Helmholtz Munich */}
