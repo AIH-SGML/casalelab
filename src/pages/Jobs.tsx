@@ -14,20 +14,6 @@ type Opening = {
 
 const openings: Opening[] = [
   {
-    title: "AI Scientist",
-    deadline: (
-      <>
-        <span className="font-semibold text-[#4b9b63]">Applications OPEN NOW</span>
-        <br />
-        Application <strong>closing date:</strong> <strong>11.11.2026</strong>
-        <br />
-        Preferred start: <strong>January 2027</strong>
-      </>
-    ),
-    href: "https://careers.humantechnopole.it/job/AI-Scientist/875-en_GB",
-    external: true,
-  },
-  {
     title: "PhD Position",
     deadline: (
       <>
@@ -38,18 +24,28 @@ const openings: Opening[] = [
     ),
   },
   {
+    title: "AI Scientist",
+    deadline: (
+      <>
+        <span className="font-semibold text-red-600">Applications CLOSED</span>
+        <br />
+        Selection in progress
+        <br />
+        Preferred start: <strong>January 2027</strong>
+      </>
+    ),
+  },
+  {
     title: "Postdoc in Statistical Genetics",
     deadline: (
       <>
         <span className="font-semibold text-red-600">Applications CLOSED</span>
         <br />
-        Closed: <strong>04.11.2026</strong>
+        Selection in progress
         <br />
         Preferred start: <strong>January 2027</strong>
       </>
     ),
-    href: "https://careers.humantechnopole.it/job/Postdoc-in-Statistical-Genetics-Casale-Group/869-en_GB",
-    external: true,
   },
   {
     title: "Postdoc in AI for Biomedicine",
@@ -57,13 +53,11 @@ const openings: Opening[] = [
       <>
         <span className="font-semibold text-red-600">Applications CLOSED</span>
         <br />
-        Closed: <strong>04.11.2026</strong>
+        Selection in progress
         <br />
         Preferred start: <strong>January 2027</strong>
       </>
     ),
-    href: "https://careers.humantechnopole.it/job/Postdoc-in-AI-for-Biomedicine-Casale-Group/871-en_GB",
-    external: true,
   },
 ];
 
