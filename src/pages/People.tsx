@@ -10,7 +10,6 @@ import teamImg3 from "@/assets/team/team-group-3.png";
 import teamImg4 from "@/assets/team/team-group-4.png";
 import teamImg5 from "@/assets/team/team-group-5.jpg";
 import teamImg6 from "@/assets/team/team-group-6.png";
-import abhinavImg from "@/assets/people/abhinav_jain.png";
 import antonioImg from "@/assets/people/antonio_nappi.png";
 import ayshanImg from "@/assets/people/ayshan_alyneva.png";
 import benediktImg from "@/assets/people/benedikt_roth.png";
@@ -20,9 +19,10 @@ import emanueleImg from "@/assets/people/emanuele_ruoppolo.png";
 import jamisonImg from "@/assets/people/jamison_burks.png";
 import janImg from "@/assets/people/jan_engelman.png";
 import liubovImg from "@/assets/people/liubov_shilova.png";
+import lorenzoImg from "@/assets/people/lorenzo_sciacca.png";
 import mairiImg from "@/assets/people/mairi_mcclean.png";
-import missingImg from "@/assets/people/misspic.png";
 import martinImg from "@/assets/people/martin_meinel.png";
+import nicoloImg from "@/assets/people/nicolo_signani.png";
 import niklasImg from "@/assets/people/niklas_stotzem.png";
 import paoloImg from "@/assets/people/paolo_casale.png";
 import shubhamImg from "@/assets/people/shubham_chaudhary.png";
@@ -99,23 +99,17 @@ const htTeam = [
     name: "Lorenzo Sciacca",
     role: "PhD Student",
     description: "Develops AI and statistical methods for large-scale single-cell and genetic cohorts.",
-    photo: missingImg,
+    photo: lorenzoImg,
   },
   {
     name: "Nicolò Signani",
     role: "PhD Student",
     description: "Learns biological representations of tissue to study ageing, chronic stress, and disease processes.",
-    photo: missingImg,
+    photo: nicoloImg,
   },
 ];
 
 const postdocs = [
-  {
-    name: "Abhinav Jain",
-    role: "Postdoctoral Researcher",
-    description: "Builds AI methods to model how rare and common genetic variants perturb biological pathways and function to drive disease.",
-    photo: abhinavImg,
-  },
   {
     name: "Diyuan Lu",
     role: "Postdoctoral Researcher",
